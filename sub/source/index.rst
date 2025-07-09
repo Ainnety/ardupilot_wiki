@@ -24,11 +24,11 @@ Getting more info
 .. toctree::
    :hidden:
 
-   *Introduction to Sub <docs/introduction>
+   Introduction to Sub <docs/introduction>
    Choosing an Autopilot <docs/common-autopilots>
    Ground Control Stations <docs/common-GCS>
    *First Time Setup <docs/ardusub-setup>
-   *First Swim and Tuning <docs/sub-tuning>
+   *First Swim and Tuning <docs/first-swim>
    Mission Planning <docs/common-mission-planning>
    If A Problem Arises <docs/common-when-problems-arise>
    Peripheral Hardware <docs/common-optional-hardware>

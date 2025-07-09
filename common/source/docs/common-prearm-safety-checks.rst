@@ -110,6 +110,7 @@ Pre-arm checks that are failing will also be sent as messages to the GCS while d
     FFT: resolution is xHz, increase length                 FFT Harmonic Notch misconfiguration                 See :ref:`In-Flight FFT Harmonic Notch Setup<common-imu-fft>` completes
     Generator: Not healthy                                  Generator is not communicating with autopilot       Check :ref:`generator configuration <common-generators>`
     Generator: No backend driver                            Firmware does not include seelected generator       Build version of firmware with desired generator using custom.ardupilot.org
+    GPS alt error xm (see BARO_ALTERR_MAX)                  GPS and BARO alt disagree by a large amount         Read the :ref:`BARO_ALTERR_MAX<BARO_ALTERR_MAX>` parameter description
     GPS and AHRS differ by Xm                               GPS and EKF positions differ by at least 10m        Wait until GPS quality improves.  Move vehicle to a location with a clear view of the sky.  Reduce sources of radio-frequency interference
     GPS blending unhealthy                                  At least one GPS is not providing good data         Move vehicle to a location with a clear view of the sky.  Reduce sources of radio-frequency interference. Check :ref:`GPS blending configuration <common-gps-blending>`
     GPS Node x not set as instance y                        DroneCan GPS configuration error                    Check :ref:`GPS1_CAN_NODEID<GPS1_CAN_NODEID>` and :ref:`GPS2_CAN_NODEID<GPS2_CAN_NODEID>`
@@ -120,6 +121,7 @@ Pre-arm checks that are failing will also be sent as messages to the GCS while d
     GPS x: primary but TYPE 0                               Primary GPS has not been configured                 Check :ref:`GPS_PRIMARY<GPS_PRIMARY>` and confirm corresponding :ref:`GPS1_TYPE<GPS1_TYPE>` or :ref:`GPS2_TYPE<GPS2_TYPE>` matches type of GPS used
     GPS x: was not found                                    GPS disconnected or incorrectly configured          Check GPSs physical connection to autopilot and  :ref:`configuration <common-positioning-landing-page>`
     GPSx yaw not available                                  GPS-for-yaw configured but not working              Move to location with better GPS reception.  Check :ref:`GPS-for-yaw <common-gps-for-yaw>` configuration
+    Gyro x rate yHz < loop rate z Hz                        Loop rate is faster than Gyro data                  Lower :ref:`SCHED_LOOP_RATE<SCHED_LOOP_RATE>`
     Gyros inconsistent                                      Two gyros are inconsistent by at least 5 deg/sec    Reboot autopilot and hold vehicle still until gyro calibration completes.  Allow autopilot to warm-up and reboot.  If failure continues replace autopilot
     Gyros not calibrated                                    Gyro calibration normally run at startup failed     Reboot autopilot and hold vehicle still until gyro calibration completes
     Gyros not healthy                                       At least one gyro is not providing data             Reboot autopilot.  If failure continues replace autopilot

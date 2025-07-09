@@ -112,6 +112,8 @@ Quickstart
 - Prepare for "First Flight(/Drive)" completing setup prior to first flight/drive
 - Advanced Configuration offers setup of more advanced features of the firmware and hardware peripherals
 
+If you cant readily find an answer to an ArduPilot setup question, you can try `AI! <https://gurubase.io/g/ardupilot>`__. Bear in mind its experimental!
+
 Regulations
 ===========
 
@@ -234,8 +236,11 @@ Features
    :caption: Ground Control Stations
 
    Mission Planner <https://ardupilot.org/planner/index.html>
-   APM Planner 2 <https://ardupilot.org/planner2/index.html>
+   QGroundControl <https://qgroundcontrol.com/>
    MAVProxy <https://ardupilot.org/mavproxy/index.html>
+   APM Planner 2 <https://ardupilot.org/planner2/index.html>
+   Drone Engage <https://cloud.ardupilot.org>
+   Other GCSes <https://ardupilot.org/plane/docs/common-choosing-a-ground-station.html>
 
 .. toctree::
    :hidden:

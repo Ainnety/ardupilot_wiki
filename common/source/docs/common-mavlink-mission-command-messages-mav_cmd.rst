@@ -4008,7 +4008,7 @@ Supported by: All vehicles.
 
 Trigger the :ref:`camera shutter <common-camera-shutter-with-servo>` at
 regular distance intervals. This command is useful in :ref:`camera survey missions <common-camera-control-and-auto-missions-in-mission-planner>`. 
-To trigger the camera once, immediately after passing the DO command, set param3 to 1.  Trigger immediately Parameter is available from ArduPilot 4.1 onwards.
+To trigger the camera once, immediately after passing the DO command, set param3 to 1.
 
 .. note::
 
@@ -4099,10 +4099,10 @@ Mission commands to enable the Plane :ref:`GeoFence <geofencing>`, Copter/Rover 
    <td></td>
    <td>Set GeoFence enable state (0=disable, 1=enable, 2= disable only floor (Plane only)).</td>
    </tr>
-   <tr style="color: #c0c0c0">
-   <td>param2</td>
-   <td></td>
-   <td>Empty</td>
+   <tr>
+   <td><strong>param2</strong></td>
+   <td>bitmask</td>
+   <td>The target fence is specified by the bitmask value of FENCE_TYPE. 0 is ALL configured fences.</td>
    </tr>
    <tr style="color: #c0c0c0">
    <td>param3</td>

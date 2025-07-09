@@ -21,7 +21,7 @@ This failsafe is triggered if the connection between the user's transmitter and 
   - RC_OVERRIDES are lost if :ref:`using a GCS only <common-gcs-only-operation>` is being used,
 
 - set :ref:`FS_THR_ENABLE <FS_THR_ENABLE>` to "1" to enable this failsafe
-- if :ref:`FS_ACTION <FS_ACTION>` is "1", the vehicle will :ref:`RTL <rtl-mode>` to home, if "2" the vehicle will :ref:`Hold <hold-mode>`, if "3" or "4" the vehicle will attempt to use :ref:`SmartRTL <smartrtl-mode>` but if this mode cannot be engaged the vehicle will :ref:`RTL <rtl-mode>` or :ref:`Hold <hold-mode>` respectively.
+- if :ref:`FS_ACTION <FS_ACTION>` is "1", the vehicle will :ref:`RTL <rtl-mode>` to home, if "2" the vehicle will :ref:`Hold <hold-mode>`, if "3" or "4" the vehicle will attempt to use :ref:`SmartRTL <smartrtl-mode>` but if this mode cannot be engaged the vehicle will :ref:`RTL <rtl-mode>` or :ref:`Hold <hold-mode>` respectively. If "5", it will Disarm.
 - once the transmitter/receiver connection is restored, the user must use the transmitter's mode switch to re-take control of the vehicle in :ref:`Manual <manual-mode>` (or any other mode)
 
 Battery Failsafe
@@ -112,6 +112,8 @@ If enabled by setting the :ref:`FS_CRASH_CHECK <FS_CRASH_CHECK>` parameter to "1
 - velocity falls below 0.08m/s (i.e. 8cm/s)
 - the vehicle is turning at less than 4.5 deg/s
 - demanded throttle to the motors (from the pilot or autopilot) is at least 5%
+
+In addition, the :ref:`CRASH_ANGLE <CRASH_ANGLE>` parameter immediately enables the same actions above if the vehicle's roll or pitch angle exceeds that value. "0" disables this check.
 
 Hold Mode Failsafes
 ===================

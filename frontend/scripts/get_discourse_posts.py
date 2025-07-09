@@ -6,11 +6,16 @@ Script to get last blog entries on Discourse (https://discuss.ardupilot.org/)
 import argparse
 import json
 import re
+import hashlib
+import os
+import platform
 from pathlib import Path
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from dataclasses import dataclass
-from typing import List, Any
+from typing import List, Any, Tuple
 
 
 class RequestExecutionError(Exception):
@@ -43,6 +48,23 @@ class BlogPostsFetcher:
             self.blog_url: (base_dir / "./frontend/blog_posts.json").resolve(),
             self.news_url: (base_dir / "./frontend/news_posts.json").resolve()
         }
+        # Configure session with proper cookie handling
+        self.session = requests.Session()
+        self.session.headers.update({
+            'User-Agent': 'Mozilla/5.0 (compatible; ArduPilotPostGrabber/1.0)',
+            'Accept': 'application/json',
+            "Connection": "keep-alive",
+        })
+        # Add retry logic for 429 and other errors
+        retries = Retry(
+            total=5,
+            backoff_factor=2,
+            status_forcelist=[429, 500, 502, 503, 504],
+            allowed_methods=["HEAD", "GET", "OPTIONS"]
+        )
+        adapter = HTTPAdapter(max_retries=retries)
+        self.session.mount("https://", adapter)
+        self.session.mount("http://", adapter)
 
     @staticmethod
     def get_arguments() -> Any:
@@ -53,12 +75,30 @@ class BlogPostsFetcher:
         return args
 
     @staticmethod
-    def execute_http_request_json(url: str) -> Any:
+    def _get_cache_path(url: str) -> Path:
+        if platform.system() == "Windows":
+            home = Path(os.environ.get('LOCALAPPDATA', Path.cwd()))
+        else:
+            home = Path(os.environ.get('HOME', Path.cwd()))
+        cache_dir = home / "WebCache"
+        cache_dir.mkdir(parents=True, exist_ok=True)
+        url_hash = hashlib.sha256(url.encode()).hexdigest()
+        return cache_dir / f"{url_hash}.json"
+
+    def execute_http_request_json(self, url: str) -> Any:
         try:
-            response = requests.get(url)
+            response = self.session.get(url, verify=True)
             response.raise_for_status()
-            return response.json()
+            data = response.json()
+            cache_path = BlogPostsFetcher._get_cache_path(url)
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(data, f)
+            return data
         except requests.exceptions.RequestException as err:
+            cache_path = BlogPostsFetcher._get_cache_path(url)
+            if cache_path.exists():
+                with open(cache_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
             raise RequestExecutionError(f"Request failed with {err}. URL: {url}")
 
     @staticmethod
@@ -79,35 +119,40 @@ class BlogPostsFetcher:
         return str(litem[:140] + ' (...)')
 
     @staticmethod
-    def get_first_youtube_link(request: str) -> str:
+    def get_first_youtube_or_img_link(request: str) -> Tuple[str, bool]:
+        """ Returns the first YouTube link or image link in the request, if any.
+            True if the link is a Youtube link."""
         request_lines = request.splitlines()
         # Join the first 5 lines back together
         first_five_lines = '\n'.join(request_lines[:5])
-        first_five_lines_lower = first_five_lines.lower()  # lowercase to handle weird image type
 
         # Regular expression to find URLs that contain 'YouTube' or image links
         url_pattern = re.compile(r'href=[\'"]?(https?://www\.youtube[^\'" >]+)')
-        img_pattern = re.compile(r'(?:href|src)=[\'"]?(https?://[^\'" >]+\.(jpg|jpeg|png|gif|svg|bmp|webp))')
+        img_pattern = re.compile(r'(?i)(?:href|src)=[\'"]?(https?://[^\'" >]+\.(?:jpg|jpeg|png|gif|svg|bmp|webp))')
         img_pattern2 = re.compile(r'img src=[\'"]?(https?://[^\'" >]+)')  # catch google link and such
 
         # Find all matches
         youtube_links = url_pattern.findall(first_five_lines)
-        img_links = img_pattern.findall(first_five_lines_lower)[0] if img_pattern.findall(first_five_lines_lower) else None
+        img_links = img_pattern.findall(first_five_lines)[0] if img_pattern.findall(first_five_lines) else None
         if img_links is None:
-            img_links = img_pattern2.findall(first_five_lines_lower)[0] if img_pattern2.findall(
-                first_five_lines_lower) else None
+            img_links = img_pattern2.findall(first_five_lines)[0] if img_pattern2.findall(
+                first_five_lines) else None
 
         # If there are image links before YouTube links, return empty string
         if img_links and (not youtube_links or
-                          first_five_lines_lower.index(img_links[0]) < first_five_lines.index(youtube_links[0])):
-            return ''
+                          first_five_lines.index(img_links) < first_five_lines.index(youtube_links[0])):
+            if 'github.com' in img_links:
+                img_links = img_links + "?raw=true"
+            return img_links, False
 
         # If there are no YouTube links, still return ''
         if not youtube_links:
-            return ''
+            return '', False
 
-        # Return the first YouTube link
-        return youtube_links[0]
+        # Return the first YouTube link, get youtube video not the playlist for thumbnail
+        if '&amp;list=' in youtube_links[0]:
+            return youtube_links[0].split('&amp;list=')[0], True
+        return youtube_links[0], True
 
     @staticmethod
     def youtube_link_to_embed_link(url: str) -> str:
@@ -123,10 +168,16 @@ class BlogPostsFetcher:
 
         has_image = False
         self.debug(f"Requesting post text {single_post_link} to look for youtube link... ", verbose)
-        youtube_link = self.youtube_link_to_embed_link(self.get_first_youtube_link(post_content))
-        if youtube_link == '' and str(item['image_url']) != 'None':
-            has_image = True
-            youtube_link = 'nops'
+        thing_link, isyoutube = self.get_first_youtube_or_img_link(post_content)
+        youtube_link = self.youtube_link_to_embed_link(thing_link) if isyoutube else ''
+        if youtube_link == '':
+            if item['image_url'] is not None:
+                has_image = True
+                youtube_link = 'nops'
+            elif thing_link != '':
+                has_image = True
+                youtube_link = 'nops'
+                item['image_url'] = thing_link
 
         return Post(item['title'], item['image_url'], has_image, youtube_link, single_post_link.rsplit('.', 1)[0],
                     single_post_text.strip())

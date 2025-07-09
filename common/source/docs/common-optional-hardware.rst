@@ -46,7 +46,7 @@ For guidance on cable design, colour coding, and EMI-compliant wiring, especiall
     DroneCAN Adapter Node <common-uavcan-adapter-node>
     DroneCAN Peripherals <common-uavcan-peripherals>
     ESCs and Motors <common-escs-and-motors>
-    Ethernet Adapters <common-ethernet-adapters>
+    Ethernet Adapters and Switches <common-ethernet-adapters>
     External AHRS Systems <common-external-ahrs>
     First Person View Video <common-fpv-first-person-view>
     Fuel Flow and Level Sensors <common-fuel-sensors>
@@ -76,12 +76,11 @@ For guidance on cable design, colour coding, and EMI-compliant wiring, especiall
 [/site]
     Radio Control Systems <common-rc-systems>
     Rangefinders (Sonar, Lidar, Depth Cameras) <common-rangefinder-landingpage>
-    Received Signal Strength Indication (RSSI) <common-rssi-received-signal-strength-indication>
     Relay Switch <common-relay>
     Remote Id (aka Drone Id) <common-remoteid>
     RPM Sensor <common-rpm>
     Safety Switch <common-safety-switch-pixhawk>
-    Servos <common-servo-landingpage>
+    Servos and Actuators <common-servo-landingpage>
     Smart Batteries <common-smart-battery-landingpage>
 [site wiki="rover"]
     Start/Stop Switch <startstop-switch>

@@ -9,14 +9,6 @@ The `Leddar One Lidar <https://leddartech.com/modules/leddarone/>`__ is a light 
 .. figure:: ../../../images/leddar-one.jpg
    :target: ../_images/leddar-one.jpg
 
-.. note::
-
-   Support for LeddarOne is available in Copter-3.4.2 (or higher), Plane-3.8 (or higher), Rover-3.1 (or higher).
-
-.. warning::
-
-   Severe spikes in the reported range have been found in some Coptere-3.4.2 user's logs so we recommend careful ground testing of the distances reported or wait until Copter-3.4.3 is released by which time we hope to have the cause of these spikes identified.
-
 Connecting to the AutoPilot
 ===========================
 
@@ -44,7 +36,7 @@ Testing the sensor
 ==================
 
 Distances read by the sensor can be seen in the Mission Planner's Flight
-Data screen's Status tab. Look closely for "sonarrange".
+Data screen's Status tab. Look closely for "rangefinder1".
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg

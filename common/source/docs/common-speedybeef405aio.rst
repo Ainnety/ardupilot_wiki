@@ -38,8 +38,10 @@ UART Mapping
 ============
 The UARTs are marked Rn and Tn in the above pinouts. The Rn pin is the
 receive pin for UARTn. The Tn pin is the transmit pin for UARTn.
+
+======= ====== ================
 Name    UART   Default Protocol
-=====   =====  ================
+======= ====== ================
 SERIAL0 USB    MAVLink2
 SERIAL1 USART1 (WiFi module, not usable by ArduPilot)
 SERIAL2 USART2 (USER, RX pin only, tied to inverted SBUS pin
@@ -47,6 +49,7 @@ SERIAL3 USART3 (DisplayPort)
 SERIAL4 UART4  (User)
 SERIAL5 UART5  (GPS)
 SERIAL6 UART6  (RCin, DMA-enabled)
+======= ====== ================
 
 RC Input
 ========
@@ -70,9 +73,9 @@ The SpeedyBee F405 AIO supports up to 5 PWM outputs. The pads for motor output E
 
 The PWM are in 3 groups:
 
-PWM 1-2: Group 1
-PWM 3-4: Group 2
-LED: Group 3
+* PWM 1-2: Group 1
+* PWM 3-4: Group 2
+* LED: Group 3
 
 Channels within the same group need to use the same output rate. If
 any channel in a group uses DShot then all channels in the group need

@@ -94,13 +94,13 @@ Optical Flow Sensors
     ARK Flow Open Source Optical Flow and Distance Sensor <common-arkflow>
     ARK Flow MR Open Source Optical Flow and Distance Sensor <common-arkflow_mr>
 
-Servos
-======
+Servos and Actuators
+====================
 .. toctree::
     :maxdepth: 1
 
     DroneCAN Servos <common-dronecan-servos>
-    Himark CAN Servos <http://himarkuaveng.com/cate-21898-23052.html>
+    Hitec DroneCAN Linear Actuators <common-hitec-dronecan-linear-actuator>
 
 ESCs/Output Expanders
 =====================
@@ -109,8 +109,6 @@ ESCs/Output Expanders
 
     ARK 4IN1 ESC <common-ark-4in1-esc>
     DroneCAN ESCs <common-uavcan-escs>
-    DroneCAN Servos <common-dronecan-servos>
-    Himark CAN Servos <http://himarkuaveng.com/cate-21898-23052.html>
     Matek DroneCAN PWM <https://www.mateksys.com/?portfolio=can-l4-pwm>
 
 Compass Only

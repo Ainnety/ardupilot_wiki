@@ -8,9 +8,6 @@ The `Wasp200 <https://www.attolloengineering.com/wasp-200-lrf.html>`__ has a ran
 
 .. image:: ../../../images/wasp200-lidar.png
 
-.. note::
-
-   Support for this sensor is available in Plane-3.9 (and higher), Copter-3.6 (and higher) and Rover-3.4 (and higher)
 
 Where to Buy
 ------------
@@ -40,7 +37,7 @@ Testing the sensor
 ==================
 
 Distances read by the sensor can be seen in the Mission Planner's Flight
-Data screen's Status tab. Look closely for "sonarrange".
+Data screen's Status tab. Look closely for "rangefinder1".
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg

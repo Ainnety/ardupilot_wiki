@@ -74,9 +74,9 @@ An example of the setup of the gimbal in a networked ArduPilot vehicle system is
   - Set the autopilot's IP address using :ref:`NET_IPADDR0<NET_IPADDR0>`, :ref:`NET_IPADDR1<NET_IPADDR1>`, :ref:`NET_IPADDR2<NET_IPADDR2>`, :ref:`NET_IPADDR3<NET_IPADDR3>` (e.g. 192.168.144.14)
 - Create a serial connection over ethernet
 
-  - Set :ref:`NET_P1_TYPE<NET_P1_TYPE>` = 1 (UDP Client) and reboot the autopilot
-  - Set :ref:`NET_P1_IP0<NET_P1_IP0>`, :ref:`NET_P1_IP1<NET_P1_IP1>`, :ref:`NET_P1_IP2<NET_P1_IP2>`, :ref:`NET_P1_IP3<NET_P1_IP3>` to the gimbal's IP address (e.g. 192.168.144.25)
-  - Set :ref:`NET_P1_PORT<NET_P1_PORT>` = 2338 (port that gimbals listens for commands on)
+  - Set :ref:`NET_P1_TYPE<NET_P1_TYPE>` = 3 (TCP Client) and reboot the autopilot
+  - Set :ref:`NET_P1_IP0<NET_P1_IP0>`, :ref:`NET_P1_IP1<NET_P1_IP1>`, :ref:`NET_P1_IP2<NET_P1_IP2>`, :ref:`NET_P1_IP3<NET_P1_IP3>` to the gimbal's IP address (e.g. 192.168.144.108)
+  - Set :ref:`NET_P1_PORT<NET_P1_PORT>` = 2332 (port that gimbals listens for commands on)
   - Set :ref:`NET_P1_PROTOCOL<NET_P1_PROTOCOL>` = 8 (Gimbal)
 
 The camera's live video is available at rtsp://192.168.144.108.  If connected to a PC, `VLC <https://www.videolan.org/>`__ can be used to test the feed
@@ -137,3 +137,8 @@ Control and Testing
 The camera and gimbal can be tested using the Dragonfly application which is available from each product page's Download tab.  Alternatively VLC can be used, select Media, Network Stream and enter rtsp://192.168.144.108
 
 See :ref:`Gimbal / Mount Controls <common-mount-targeting>` and :ref:`Camera Controls <common-camera-controls>`  for details on how to control the camera and gimbal using RC, GCS or Auto mode mission commands
+
+Downloading Images and Video
+----------------------------
+
+Images and videos captured by the camera can be remotely downloaded to a companion computer or PC via Ethernet using `this xfrobot-download.py Python script <https://github.com/ArduPilot/ardupilot/blob/master/Tools/cameras_gimbals/xfrobot-download/xfrobot-download.py>`__

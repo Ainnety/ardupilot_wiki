@@ -101,16 +101,16 @@ GCS Failsafe
 
 **How it works.** When flying while using telemetry on the GCS, the
 autopilot can be programmed to trigger into failsafe mode if it loses
-telemetry. In the event that the autopilot stops receiving MAVlink
-(telemetry protocol) heartbeat messages. :ref:`FS_LONG_ACTN<FS_LONG_ACTN>` applies just in the case of a long Throttle Failsafe. See :ref:`FS_LONG_ACTN parameter below <failsafe-parameters>` for how each mode responds to the selected action value.
+telemetry from its primary GCS (set by :ref:`MAV_GCS_SYSID <MAV_GCS_SYSID>`). In the event that the autopilot stops receiving MAVlink
+(telemetry protocol) heartbeat messages from it, :ref:`FS_LONG_ACTN<FS_LONG_ACTN>` applies just as in the case of a long Throttle Failsafe. See :ref:`FS_LONG_ACTN parameter below <failsafe-parameters>` for how each mode responds to the selected action value.
 
 **Setup.**
 
 #. Set :ref:`FS_GCS_ENABL<FS_GCS_ENABL>` to 1 to enable it.
 #. Connect to the Mission Planner via telemetry. Verify on the bottom
-   right corner of the HUD that you are “flying” in a non auto mode
-   (Manual, Stabilize, FBW are ok).
-#. Unplug one of the telemetry radios. After a few minutes power off
+   right corner of the HUD that you are armed and “flying” in a non auto mode
+   (Manual, Stabilize, FBW are ok). Be sure you have the GCS connected or failsafe will occur immediately, possibly starting the motors!
+#. Unplug the telemetry radio getting telemetry from the primary GCS. After a few minutes power off
    your autopilot. (Remember the autopilot will not go fully into failsafe
    until :ref:`FS_LONG_TIMEOUT<FS_LONG_TIMEOUT>` seconds of MAVLink inactivity have passed).
 #. Connect your autopilot to the mission planner and pull the logs.
@@ -224,7 +224,7 @@ No Action is ever taken for Short FailSafe in these modes:
 
 :ref:`FS_SHORT_ACTN<FS_SHORT_ACTN>` = 3 disables taking action in ANY mode
 
-.. note:: if in AutoLanding in AUTO, it will always continue to the landing
+.. note:: if in AutoLanding in AUTO or AUTOLAND, it will always continue to the landing
 
 In QuadPlanes, Short FailSafe will force QLAND by default, RTL if bit 20 of :ref:`Q_OPTIONS<Q_OPTIONS>` is set, or QRTL if bit 5 of :ref:`Q_OPTIONS<Q_OPTIONS>` is set, if entered from these modes:
 
@@ -450,7 +450,7 @@ Otherwise:
 |                      |GUIDED                  |                         |
 +----------------------+------------------------+-------------------------+
 
-.. note: in Mode TAKEOFF, Long Failsafe Action is postponed until :ref:`TKOFF_LVL_ALT<TKOFF_LVL_ALT>` is obtained unless action is GLIDE or PARACHUTE, which would occur immediately .
+.. note: in Mode TAKEOFF, Long Failsafe Action is postponed until :ref:`TKOFF_LVL_ALT<TKOFF_LVL_ALT>` is obtained unless action is GLIDE or PARACHUTE, which would occur immediately.
 
 GCS failsafe enable (:ref:`FS_GCS_ENABL<FS_GCS_ENABL>` )
 --------------------------------------------------------

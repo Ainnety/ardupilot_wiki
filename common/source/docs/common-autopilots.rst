@@ -72,7 +72,7 @@ Open Hardware
     mRo X2.1-777 <https://store.mrobotics.io/mRo-X2-1-777-p/m10022a.htm>
     OpenPilot Revolution <common-openpilot-revo-mini>
     TauLabs Sparky2 <common-taulabs-sparky2>
-    ZeroOneX6 <common-zeroonex6>
+    ZeroOneX6/X6 Pro <common-zeroonex6>
 
 \* due to flash memory limitations, these boards do not include all ArduPilot features. See :ref:`Firmware Limitations <common-limited_firmware>` for details.
 
@@ -83,6 +83,7 @@ Closed Hardware
     :maxdepth: 1
 
     3DR Control Zero H7 OEM <common-3DR_Control_Zero_OEM_G>
+    AEDROX H7 <common-aedroxh7>
     Aerotenna Ocpoc-Zynq <https://aerotenna.com/shop/ocpoc-zynq-mini/>
     Airvolute DroneCore <common-airvolute-DroneCore-Suite>
     AET-H743-Basic <common-AET-H743-Basic>
@@ -91,6 +92,8 @@ Closed Hardware
     AtomRC F405-NAVI <common-atomrcf405-navi>
     BetaFPV F405 family <common-betafpvf405>
     brainFPV RADIX2 HD <common-radix2hd>
+    Brother Hobby F405v3 <common-brotherhobbyf405v3>
+    Brother Hobby H743 <common-brotherhobbyh743>
     CBUnmanned H743 Stamp <common-StampH743>
     CSKY405 <common-CSKYF405>
     Emlid NAVIO2 (Linux) <common-navio2-overview>
@@ -141,8 +144,10 @@ Closed Hardware
     MFT-SEMA100 <common-mft-sema100>
     MicoAir405v2/Mini <common-MicoAir405v2>
     MicoAir743 <common-MicoAir743>
-    NxtPX4v2 <common-NxtPX4v2>
     ModalAI Flight core <https://www.modalai.com/products/flight-core>
+[site wiki="copter,rover,blimp"]
+    ModalAI VOXL2 <common-modalai-voxl2>
+[/site]
     mRo ControlZero Classic <https://store.mrobotics.io/product-p/m10048d.htm>
     mRo ControlZero F7 <common-mro-control-zero-F7>
     mRo ControlZero H7 <https://store.mrobotics.io/mRo-Control-Zero-H7-p/mro-ctrl-zero-h7.htm>
@@ -150,10 +155,12 @@ Closed Hardware
     mRo Pixracer Pro (H7) <common-pixracer-pro>
     mRo Nexus <common-mro-nexus>
     MUPilot <common-MUPilot>
+    NarinFC-H7 <common-NarinFC-H7>
+    NxtPX4v2 <common-NxtPX4v2>
     Omnibus F4 AIO/Pro <common-omnibusf4pro>
     OmnibusNanoV6 <common-omnibusnanov6>
     Omnibus F7V2 <common-omnibusf7>
-    OrcaF405 <common-OrqaF405>
+    OrqaF405 <common-OrqaF405>
 [site wiki="copter"]
     Parrot Bebop Autopilot <parrot-bebop-autopilot>
 [/site]
@@ -165,18 +172,23 @@ Closed Hardware
     QioTek Zealot H743 <common-qiotek-zealoth7>
     SDMODEL SDH7V1 <https://www.sdmodel.com.tw/content.php?cn=item&tid=1320&start=0>
     SDMODEL H7 V2 <common-SDMODELH7V2>
+    SequreH743 <common-sequreh743>
     Sky-Drones AIRLink <common-skydrones-airlink>
     SkySakuraH743 <common-SkySakuraH743>
     SkystarsH7HD <common-skystarsH7>
+    SkystarsH7HDV2 <common-skystarsh7hdv2>
     SPRacing H7 Extreme <common-spracingh7-extreme>
     SPRacing H7 RF <common-spracingh7-rf>
     Swan-K1 <common-Swan-K1>
+    Spedix F405 <common-spedixf405>
+    Spedix H743 <common-spedixh743>
     SpeedyBee F4 (this board currently is non-verified) <common-speedybeef4>
     SpeedyBee F405 AIO <common-speedybeef405aio>
     SpeedyBee F4 V3/V4 <common-speedybeef4-v3>
     SpeedyBee F405 Mini <common-speedybeef405-mini>
     SpeedyBeeF405WING/WING Mini <common-speedybeef405wing>
     TBS Lucid H7 <common-tbs-lucidh7>
+    TBS Lucid H7 Wing <common-tbs-lucid-h7-wing>
     ThePeach FCC-K1 <common-thepeach-k1>
     ThePeach FCC-R1 <common-thepeach-r1>
     TmotorH7Mini <common-tmotor-h7-mini>

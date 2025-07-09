@@ -10,11 +10,6 @@ The `VL53L0X <https://www.st.com/en/imaging-and-photonics-solutions/vl53l0x.html
 
 *images courtesy of Pololu.com*
 
-.. note::
-
-   Support for this lidar was first made available in available in Copter-3.6, Rover-3.3, and Plane-3.9.
-   Support the 4m `ST VL53L1X <https://www.st.com/en/imaging-and-photonics-solutions/vl53l1x.html>`__ was released with Copter-4.0.
-
 
 .. note::
    
@@ -47,7 +42,7 @@ Testing the sensor
 ==================
 
 Distances read by the sensor can be seen in the Mission Planner's Flight
-Data screen's Status tab. Look closely for "sonarrange".(The value of this image is not a real value.)
+Data screen's Status tab. Look closely for "rangefinder1".(The value of this image is not a real value.)
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg

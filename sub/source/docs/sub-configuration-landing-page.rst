@@ -1,7 +1,5 @@
 .. _sub-configuration-landing-page:
 
-**UNDER CONSTRUCTION**
-
 =================
 Sub Configuration
 =================
@@ -20,15 +18,15 @@ components, including those required for the operation of the autopilot.
     :maxdepth: 1
 
     Basic System Overview <common-basic-operation>
+    Default Hardware Configuration <sub-hardware>
+    Frame Types and Motor Layout<sub-frames>
+    Sub Mode <modes>
+    Radio Control <rc-setup>
     Accelerometer Calibration <common-accelerometer-calibration>
     Compass Calibration <common-compass-calibration-in-mission-planner>
+    Pilot Control <pilot-control>
+    Button Inputs <buttons>
+    Failsafes <failsafe-landing-page>
     ESC Calibration <common-esc-calibration>
+    Companion Computers <sub-companions-computers>
 
-
-**Needs pages on modes, and other basic setup, including something pointing to companion computers**
-
-* Frame and Motor Layout
-* Failsafes
-* Pilot Control
-* Button Inputs
-* Swim Modes
